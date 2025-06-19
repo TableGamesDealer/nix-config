@@ -1,0 +1,157 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 3
+final_space = true
+console_title_template = "{{ .Shell }} {{ .Folder }}"
+tooltips = []
+newline = true
+
+[palette]
+light-red = "#FF9492"
+red = "#FF0000"
+green = "#00FF00"
+git-green = "#26CD4D"
+light-blue = "#8CC2FF"
+blue = "#0000FF"
+yellow = "#FFFF00"
+goldenrod = "#F0B72F"
+white = "#FFFFFF"
+magenta = "#FF00FF"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+type = "os"
+style = "plain"
+template = "{{ .Icon }}"
+
+[blocks.segments.properties]
+windows_icon = "Win"
+linux_icon = "Linux"
+macos_icon = "Mac"
+
+[[blocks.segments]]
+type = "shell"
+style = "plain"
+foreground = "p:magenta"
+
+[blocks.segments.properties]
+template = "{{ .Name }}"
+
+[[blocks.segments]]
+type = "text"
+style = "plain"
+foreground = "p:light-blue"
+template = "{{ if .Env.ZELLIJ_SESSION_NAME }}{{ .Env.ZELLIJ_SESSION_NAME }}{{ end }} "
+
+[[blocks.segments]]
+type = "text"
+style = "plain"
+foreground = "p:blue"
+template = "{{ if .Env.TMUX }}[{{ .Env.TMUX }}]{{ end }}"
+
+#######################
+
+
+[[blocks.segments]]
+type = "git"
+style = "plain"
+foreground = "p:green"
+background = "transparent"
+template = "{{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}{{ if .Working.Untracked }}<p:yellow>{{ .Working.Untracked }}</>{{ end }}{{ if .Working.Modified }}<p:blue>~{{ .Working.Modified }}</>{{ end }}{{ if .Working.Deleted }}<p:red>-{{ .Working.Deleted }}</>{{ end }}{{ if .Working.Added }}<p:green>+{{ .Working.Added }}</>{{ end }}{{ if .Working.Unmerged }}<p:red>x{{ .Working.Unmerged }}</>{{ end }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}{{ if .Staging.Added }}<p:green>+{{ .Staging.Added }}</>{{ end }}{{ if .Staging.Modified }} <p:blue>~{{ .Staging.Modified }}</>{{ end }}{{ if .Staging.Deleted }}<p:red>-{{ .Staging.Deleted }}</>{{ end }}{{ if .Staging.Unmerged }}<p:red>x{{ .Staging.Unmerged }}</>{{ end }}{{ end }}{{ if gt .StashCount 0 }}<p:yellow>{{ .StashCount }}</>{{ end }}{{ if gt .WorktreeCount 0 }}{{ .WorktreeCount }}{{ end }}{{ if .LatestTag }}{{ .LatestTag }}{{ end }}{{ if .Merge }}<p:red>MERGE</>{{ end }}{{ if .Rebase }} <p:red>REBASE{{ .Rebase.Current }}/{{ .Rebase.Total }}</>{{ end }}{{ if .CherryPick }}<p:red>CHERRY-PICK</>{{ end }}{{ if .Revert }}<p:red>REVERT</>{{ end }}{{ if .Detached }}DETACHED{{ end }}{{ if .IsBare }}BARE{{ end }}{{ if .IsWorkTree }}WORKTREE{{ end }}"
+
+[blocks.segments.properties]
+fetch_status = true
+fetch_upstream_icon = true
+fetch_bare_info = true
+fetch_user = true
+source = "cli"
+branch_icon = ""
+branch_identical_icon = "≡"
+branch_ahead_icon = "↑"
+branch_behind_icon = "↓"
+branch_gone_icon = "≢"
+commit_icon = ""
+tag_icon = ""
+rebase_icon = ""
+cherry_pick_icon = ""
+revert_icon = ""
+merge_icon = ""
+no_commits_icon = ""
+github_icon = ""
+gitlab_icon = ""
+bitbucket_icon = ""
+azure_devops_icon = ""
+codecommit_icon = ""
+codeberg_icon = ""
+git_icon = ""
+
+[blocks.segments.properties.status_formats]
+Added = "<p:green>+%d</>"
+Modified = "<p:blue>~%d</>"
+Deleted = "<p:red>-%d</>"
+Untracked = "<p:yellow>?%d</>"
+Unmerged = "<p:red>x%d</>"
+
+[blocks.segments.properties.upstream_icons]
+"github.com" = "GH"
+"gitlab.com" = "GL"
+"bitbucket.org" = "BB"
+
+#######################
+
+[[blocks.segments]]
+type = "path"
+style = "plain"
+foreground = "p:goldenrod"
+
+[blocks.segments.properties]
+style = "full" # full or folder
+
+[[blocks.segments]]
+type = "project"
+style = "plain"
+foreground = "#E6EDF3"
+# background = "p:goldenrod"
+template = "{{ if .Name }}{{ if eq .Type \"cargo\" }}rust{{ else }}{{ .Type }}{{ end }} {{ .Version }} {{ .Name }}{{ end }}"
+
+[blocks.segments.properties]
+fetch_project = true
+display_mode = "files"
+
+[[blocks.segments]]
+type = "executiontime"
+style = "plain"
+foreground = "p:light-blue"
+
+[blocks.segments.properties]
+threshold = 500
+style = "austin"
+
+[[blocks.segments]]
+type = "exit"
+style = "plain"
+foreground = "p:red"
+
+[blocks.segments.properties]
+display_exit_code = true
+always_enabled = false
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+type = "text"
+style = "plain"
+foreground = "p:magenta"
+template = "〉"
+
+
+[transient_prompt]
+foreground = "p:magenta"
+template = "{{ .Shell }}> "
+newline = true

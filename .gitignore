@@ -1,4 +1,7 @@
-\#*
-*.swp
+output.txt
 result
 .DS_Store
+test.md
+del
+flake.lock
+flake.lock

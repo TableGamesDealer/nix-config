@@ -1,119 +1,143 @@
-{ pkgs, ... }:
-let
-  myPython = pkgs.python3.withPackages (ps: with ps; [
-    slpp
-    pip
-    rich
-    virtualenv
-    black
-  ]);
-
-  myPHP = pkgs.php82.withExtensions ({ enabled, all }: enabled ++ (with all; [
-    xdebug
-  ]));
-
-  myFonts = import ./fonts.nix { inherit pkgs; };
-in
+{pkgs}:
 with pkgs; [
-  # A
-  act # Run Github actions locally
-  age # File encryption tool
-  age-plugin-yubikey # YubiKey plugin for age encryption
-  alacritty # GPU-accelerated terminal emulator
-  aspell # Spell checker
-  aspellDicts.en # English dictionary for aspell
+  git
+  gh
+  helix
+  zellij
+  yazi
+  fzf
+  zoxide
+  eza
+  bat
+  ripgrep
+  gitui
+  gh-dash
+  bottom
+  dust
+  oh-my-posh
+  remarshal
+  sc-im
+  viu
 
-  # B
-  bash-completion # Bash completion scripts
-  bat # Cat clone with syntax highlighting
-  btop # System monitor and process viewer
+  # libs
+  # libiconv
 
-  # C
-  coreutils # Basic file/text/shell utilities
+  # emulation
+  qemu
 
-  # D
-  direnv # Environment variable management per directory
-  difftastic # Structural diff tool
-  du-dust # Disk usage analyzer
+  # below is a collection of language and lsps that I may not need
 
-  # F
-  fd # Fast find alternative
-  ffmpeg # Multimedia framework
-  fzf # Fuzzy finder
+  # English spellchecker
+  ltex-ls
 
-  # G
-  gcc # GNU Compiler Collection
-  gh # GitHub CLI
-  glow # Markdown renderer for terminal
-  gnupg # GNU Privacy Guard
-  gopls # Go language server
+  # nix
+  nil # nix lsp
+  alejandra # nix formatter
 
-  # H
-  htop # Interactive process viewer
-  hunspell # Spell checker
+  # bash
+  bash
+  bash-language-server # bash lsp
+  shfmt # bash formatter
 
-  # I
-  iftop # Network bandwidth monitor
-  imagemagick # Image manipulation toolkit
+  # c/c++
+  gcc # c compiler
+  clang-tools # c lsp
 
-  # J
-  jetbrains.phpstorm # PHP IDE
-  jpegoptim # JPEG optimizer
-  jq # JSON processor
+  # c#
+  mono # c-sharp compilers mcs and csc
+  omnisharp-roslyn # c-sharp lsp
+  netcoredbg # c-sharp debugger
+  csharpier # formatter
 
-  # K
-  killall # Kill processes by name
+  # cmake
+  cmake # cmake program
+  cmake-language-server # cmake lsp
+  cmake-format # cmake formatter
 
-  # L
-  libfido2 # FIDO2 library
+  # css
+  vscode-langservers-extracted # HTML/CSS/JSON/ESLint language servers extracted from vscode
 
-  # M
-  myPHP # Custom PHP with extensions
-  myPython # Custom Python with packages
+  # fish
+  fish
+  fish-lsp
 
-  # N
-  neofetch # System information tool
-  ngrok # Secure tunneling service
-  nodejs # JavaScript runtime
-  nodePackages.live-server # Development server with live reload
-  nodePackages.nodemon # Node.js file watcher
-  nodePackages.npm # Node package manager
-  nodePackages.prettier # Code formatter
+  # go
+  go # go compiler
+  gopls # go lsp
+  gofumpt # go formatter
+  delve # go debugger
 
-  # O
-  openssh # SSH client and server
+  # haskell
+  ghc # haskell compiler
+  haskell-language-server # haskell lsp
+  ormolu # haskell formatter
 
-  # P
-  pandoc # Document converter
-  php82Packages.composer # PHP dependency manager
-  php82Packages.deployer # PHP deployment tool
-  php82Packages.php-cs-fixer # PHP code style fixer
-  phpunit # PHP testing framework
-  pngquant # PNG compression tool
+  # html
+  superhtml
 
-  # R
-  ripgrep # Fast text search tool
+  # java
+  jdk # Open-source Java Development Kit
+  jdt-language-server # java lsp
+  google-java-format # java formatter
 
-  # S
-  slack # Team communication app
-  sqlite # SQL database engine
+  # javascript
+  nodejs # javascript tooling
+  nodePackages.prettier # general formatter
+  typescript-language-server # javascript lsp
 
-  # T
-  terraform # Infrastructure as code tool
-  terraform-ls # Terraform language server
-  tflint # Terraform linter
-  tmux # Terminal multiplexer
-  tree # Directory tree viewer
+  # just
+  just
+  just-lsp # just lsp
+  just-formatter # just formatter
 
-  # U
-  unrar # RAR archive extractor
-  unzip # ZIP archive extractor
-  uv # Python package installer
+  # lua
+  lua # lua lang
+  lua-language-server # lua lsp
+  stylua # lua formatter
 
-  # W
-  wget # File downloader
+  # markdown
+  markdown-oxide
+  typos-lsp
 
-  # Z
-  zip # ZIP archive creator
-  zsh-powerlevel10k # Zsh theme
-] ++ myFonts
+  # nu
+  nushell
+  nufmt
+
+  # ocaml
+  ocaml
+  ocamlPackages.ocaml-lsp
+  ocamlPackages.ocamlformat
+
+  # odin
+  odin
+  ols # also provides odinfmt
+
+  # python
+  python3
+  basedpyright
+  ruff # formatter and linter?
+
+  # ruby
+  ruby
+  rubyPackages.solargraph # ruby lsp
+  rubyPackages.rubocop # ruby formatter
+
+  # rust
+  rustup
+
+  # steel
+  steel
+
+  # toml
+  taplo
+
+  # yaml-language-server
+  yaml-language-server
+
+  #zig
+  zig
+  zls
+
+  # llvm debuger
+  lldb_20
+]

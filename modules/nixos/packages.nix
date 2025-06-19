@@ -1,41 +1,67 @@
-{ pkgs, inputs }:
+{ pkgs }:
+
 with pkgs;
 let shared-packages = import ../shared/packages.nix { inherit pkgs; }; in
 shared-packages ++ [
 
-  _1password-gui # Password manager
+  # Security and authentication
+  yubikey-agent
+  keepassxc
 
-  brlaser # Printer driver
+  # App and package management
+  appimage-run
+  gnumake
+  cmake
+  home-manager
 
-  chromedriver # Chrome webdriver for testing
+  # Media and design tools
+  vlc
+  fontconfig
+  font-manager
 
-  claude-code # Coding agent
-  inputs.claude-desktop.packages."${pkgs.system}".claude-desktop-with-fhs
+  # Productivity tools
+  bc # old school calculator
+  galculator
 
-  discord # Voice and text chat
-
-  gimp # Image editor
-  google-chrome # Web browser
-
-  keepassxc # Password manager
-
+  # Audio tools
   pavucontrol # Pulse audio controls
-  playerctl # Control media players from command line
 
-  qmk # Keyboard firmware toolkit
+  # Testing and development tools
+  direnv
+  rofi
+  rofi-calc
+  postgresql
+  libtool # for Emacs vterm
 
-  screenkey # Display pressed keys on screen
-  simplescreenrecorder # Screen recording tool
+  # Screenshot and recording tools
+  flameshot
 
-  unixtools.ifconfig # Network interface configuration
-  unixtools.netstat # Network statistics
+  # Text and terminal utilities
+  feh # Manage wallpapers
+  screenkey
+  tree
+  unixtools.ifconfig
+  unixtools.netstat
+  xclip # For the org-download package in Emacs
+  xorg.xwininfo # Provides a cursor to click and learn about windows
+  xorg.xrandr
 
-  vlc # Media player
+  # File and system utilities
+  inotify-tools # inotifywait, inotifywatch - For file system events
+  i3lock-fancy-rapid
+  libnotify
+  pcmanfm # File browser
+  sqlite
+  xdg-utils
 
-  xclip # Clipboard utilities
+  # Other utilities
+  yad # yad-calendar is used with polybar
+  xdotool
+  google-chrome
 
-  yubikey-agent # Yubikey SSH agent
-  pinentry-qt # GPG pinentry
+  # PDF viewer
+  zathura
 
-  zathura # PDF viewer
+  # Music and entertainment
+  spotify
 ]

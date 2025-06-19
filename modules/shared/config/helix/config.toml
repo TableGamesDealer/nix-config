@@ -1,0 +1,631 @@
+theme = "github_dark_high_contrast"
+
+[editor]
+
+# Number of lines of padding around the edge of the screen when scrolling
+# default = 5
+scrolloff = 5
+
+# Enable mouse mode
+# default = true
+mouse = true
+
+# Default register used for yank/paste
+# default = "
+default-yank-register = '"'
+
+# Middle click paste support
+# default = true
+middle-click-paste = false
+
+# Number of lines to scroll per scroll wheel step
+# default = 3
+scroll-lines = 3
+
+# Shell to use when running external commands
+# default = Unix: ["sh", "-c"] Windows: ["cmd", "/C"]
+shell = ["sh", "-c"]
+
+# Line number display: absolute simply shows each line's number, while relative shows the distance from the current line. When unfocused or in insert mode, relative will still show absolute line numbers
+# default = absolute
+line-number = "absolute"
+
+# Highlight all lines with a cursor
+# default = false
+cursorline = false
+
+# Highlight all columns with a cursor
+# default = false
+cursorcolumn = false
+
+# if helix should automatically add a line comment token if you create a new line inside a comment.
+# default = true
+continue-comments = true
+
+# Gutters to display: Available are diagnostics and diff and line-numbers and spacer, note that diagnostics also includes other features like breakpoints, 1-width padding will be inserted if gutters is non-empty
+# default = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+# gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+# Enable automatic pop up of auto-completion
+# default = true
+auto-completion = true
+
+# Enable filepath completion. Show files and directories if an existing path at the cursor was recognized, either absolute or relative to the current opened document or current working directory (if the buffer is not yet saved). Defaults to true.
+# default = true
+path-completion = true
+
+# Enable automatic formatting on save
+# default = true
+auto-format = true
+
+# Time in milliseconds since last keypress before idle timers trigger.
+# default = 250
+idle-timeout = 250
+
+# Time in milliseconds after typing a word character before completions are shown, set to 5 for instant.
+# default = true
+completion-timeout = 250
+
+# Whether to apply completion item instantly when selected
+# default = true
+preview-completion-insert = true
+
+# The min-length of word under cursor to trigger autocompletion
+# default = 2
+completion-trigger-len = 2
+
+# Set to true to make completions always replace the entire word and not just the part before the cursor
+# default = false
+completion-replace = false
+
+# Whether to display info boxes
+# default = true
+auto-info = true
+
+# Set to true to override automatic detection of terminal truecolor support in the event of a false negative
+# default = false
+true-color = false
+
+# Set to true to override automatic detection of terminal undercurl support in the event of a false negative
+# default = false
+undercurl = false
+
+# List of column positions at which to display the rulers. Can be overridden by language specific rulers in languages.toml file
+# default = []
+rulers = [80]
+
+# Renders a line at the top of the editor displaying open buffers. Can be always, never or multiple (only shown if more than one buffer is in use)
+# default = never
+bufferline = "multiple"
+
+# Whether to color the mode indicator with different colors depending on the mode itself
+# default = false
+color-modes = false
+
+# Maximum line length. Used for the :reflow command and soft-wrapping if soft-wrap.wrap-at-text-width is set
+# default = 80
+text-width = 80
+
+# Directories relative to the workspace root that are treated as LSP roots. Should only be set in .helix/config.toml
+# default = []
+workspace-lsp-roots = []
+
+# The line ending to use for new documents. Can be native, lf, crlf, ff, cr or nel. native uses the platform's native line ending (crlf on Windows, otherwise lf).
+# default = native
+default-line-ending = "native"
+
+# Whether to automatically insert a trailing line-ending on write if missing
+# default = true
+insert-final-newline = true
+
+# Draw border around popup, menu, all, or none
+# default = none
+popup-border = "none"
+
+# How the indentation for a newly inserted line is computed: simple just copies the indentation level from the previous line, tree-sitter computes the indentation based on the syntax tree and hybrid combines both approaches. If the chosen heuristic is not available, a different one will be used as a fallback (the fallback order being hybrid -> tree-sitter -> simple).
+# default = hybrid
+indent-heuristic = "hybrid"
+
+# The characters that are used to generate two character jump labels. Characters at the start of the alphabet are used first.
+# default = abcdefghijklmnopqrstuvwxyz
+jump-label-alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+# Minimum severity of diagnostics to render at the end of the line. Set to disable to disable entirely. Refer to the setting about inline-diagnostics for more details
+# default = disable
+end-of-line-diagnostics = "disable"
+
+# Which API to use for clipboard interaction. One of pasteboard (MacOS), wayland, x-clip, x-sel, win-32-yank, termux, tmux, windows, termcode, none, or a custom command set.
+# default = Platform and environment specific.
+clipboard-provider = "pasteboard"
+
+# There are custom things here that I have yet to understand!
+# [editor.clipboard-provider.custom]
+# yank = { command = "cat",  args = ["test.txt"] }
+# paste = { command = "tee",  args = ["test.txt"] }
+# primary-yank = { command = "cat",  args = ["test-primary.txt"] } # optional
+# primary-paste = { command = "tee",  args = ["test-primary.txt"] } # optional
+
+[editor.statusline]
+# Allows configuring the statusline at the bottom of the editor.
+# The configuration distinguishes between three areas of the status line:
+# [ ... ... LEFT ... ... | ... ... ... CENTER ... ... ... | ... ... RIGHT ... ... ]
+# The following statusline elements can be configured:
+# Key	Description
+
+# mode - The current editor mode (mode.normal/mode.insert/mode.select)
+# spinner - A progress spinner indicating LSP activity
+# file-name - The path/name of the opened file
+# file-absolute-path - The absolute path/name of the opened file
+# file-base-name - The basename of the opened file
+# file-modification-indicator - The indicator to show whether the file is modified (a [+] appears when there are unsaved changes)
+# file-encoding - The encoding of the opened file if it differs from UTF-8
+# file-line-ending - The file line endings (CRLF or LF)
+# read-only-indicator - An indicator that shows [readonly] when a file cannot be written
+# total-line-numbers - The total line numbers of the opened file
+# file-type - The type of the opened file
+# diagnostics - The number of warnings and/or errors
+# workspace-diagnostics - The number of warnings and/or errors on workspace
+# selections - The number of active selections
+# primary-selection-length - The number of characters currently in primary selection
+# position - The cursor position
+# position-percentage - The cursor position as a percentage of the total number of lines
+# separator - The string defined in editor.statusline.separator (defaults to "│")
+# spacer - Inserts a space between elements (multiple/contiguous spacers may be specified)
+# version-control - The current branch name or detached commit hash of the opened workspace
+# register - The current selected register
+
+# A list of elements aligned to the left of the statusline
+# default = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+left = [
+  "mode",
+  "spinner",
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+
+# A list of elements aligned to the middle of the statusline
+# default = []
+center = []
+
+# A list of elements aligned to the right of the statusline
+# default = ["diagnostics", "selections", "register", "position", "file-encoding"]
+right = ["diagnostics", "selections", "register", "position", "file-encoding"]
+
+# The character used to separate elements in the statusline
+# default = "│"
+separator = "|"
+
+# The text shown in the mode element for normal mode
+# default = "NOR"
+mode.normal = "NOR"
+
+# The text shown in the mode element for insert mode
+# default = "INS"
+mode.insert = "INS"
+
+# The text shown in the mode element for select mode
+# default = "SEL"
+mode.select = "SEL"
+
+[editor.lsp]
+
+# Enables LSP integration. Setting to false will completely disable language servers regardless of language settings.
+# default = true
+enable = true
+
+# Display LSP window/showMessage messages below statusline^1
+# default = true
+display-messages = true
+
+# Display LSP progress messages below statusline^1
+# default = false
+display-progress-messages = false
+
+# Enable automatic popup of signature help (parameter hints)
+# default = true
+auto-signature-help = true
+
+# Display inlay hints^2
+# default = false
+display-inlay-hints = false
+
+# Display docs under signature help popup
+# default = true
+display-signature-help-docs = true
+
+# Enables snippet completions. Requires a server restart (:lsp-restart) to take effect after :config-reload/:set.
+# default = true
+snippets = true
+
+# Include declaration in the goto references popup.
+# default = true
+goto-reference-include-declaration = true
+
+# ^1 By default, a progress spinner is shown in the statusline beside the file path.
+# ^2 You may also have to activate them in the language server config for them to appear, not just in Helix. Inlay hints in Helix are still being improved on and may be a little bit laggy/janky under some circumstances. Please report any bugs you see so we can fix them!
+
+[editor.cursor-shape]
+# Defines the shape of cursor in each mode. Valid values for these options are block, bar, underline, or hidden.
+
+# Cursor shape in normal mode
+# default = block
+normal = "block"
+
+# Cursor shape in insert mode
+# default = block
+insert = "bar"
+
+# Cursor shape in select mode
+# default = block
+select = "underline"
+
+# Set options for file picker and global search. Ignoring a file means it is not visible in the Helix file picker and global search.
+# All git related options are only enabled in a git repository.
+
+[editor.file-picker]
+
+# Enables ignoring hidden files
+# default = true
+hidden = true
+
+# Follow symlinks instead of ignoring them
+# default = true
+follow-symlinks = true
+
+# Ignore symlinks that point at files already shown in the picker
+# default = true
+deduplicate-links = true
+
+# Enables reading ignore files from parent directories
+# default = true
+parents = true
+
+# Enables reading .ignore files
+# default = true
+ignore = true
+
+# Enables reading .gitignore files
+# default = true
+git-ignore = true
+
+# Enables reading global .gitignore, whose path is specified in git's config: core.excludesfile option
+# default = true
+git-global = true
+
+# Enables reading .git/info/exclude files
+# default = true
+git-exclude = true
+
+# Set with an integer value for maximum depth to recurse
+# default = Unset by default
+# max-depth = 5
+
+# Ignore files can be placed locally as .ignore or put in your home directory as ~/.ignore. They support the usual ignore and negative ignore (unignore) rules used in .gitignore files.
+
+# Additionally, you can use Helix-specific ignore files by creating a local .helix/ignore file in the current workspace or a global ignore file located in your Helix config directory:
+
+# Linux and Mac: ~/.config/helix/ignore
+# Windows: %AppData%\helix\ignore
+# Example:
+
+# # unignore in file picker and global search
+# !.github/
+# !.gitignore
+# !.gitattributes
+
+[editor.auto-pairs]
+# Enables automatic insertion of pairs to parentheses, brackets, etc. Can be a simple boolean value, or a specific mapping of pairs of single characters.
+
+# To disable auto-pairs altogether, set auto-pairs to false:
+# [editor]
+# auto-pairs = false # defaults to `true`
+# The default pairs are (){}[]''""``, but these can be customized by setting auto-pairs to a TOML table:
+
+# default = (){}[]''""``
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+# Additionally, this setting can be used in a language config. Unless the editor setting is false, this will override the editor config in documents with this language.
+
+# Example languages.toml that adds <> and removes ''
+
+# [[language]]
+# name = "rust"
+
+# [language.auto-pairs]
+# '(' = ')'
+# '{' = '}'
+# '[' = ']'
+# '"' = '"'
+# '`' = '`'
+# '<' = '>'
+
+[editor.auto-save]
+# Control auto save behavior.
+
+# Enable automatic saving on the focus moving away from Helix. Requires focus event support from your terminal
+# default = false
+focus-lost = false
+
+# Enable automatic saving after auto-save.after-delay.timeout milliseconds have passed since last edit.
+# default = false
+after-delay.enable = false
+
+# Time in milliseconds since last edit before auto save timer triggers.
+# default = 3000
+after-delay.timeout = 3000
+
+[editor.search]
+# Search specific options.
+
+# Enable smart case regex searching (case-insensitive unless pattern contains upper case characters)
+# default = true
+smart-case = true
+
+# Whether the search should wrap after depleting the matches
+# default = true
+wrap-around = true
+
+[editor.whitespace]
+# Options for rendering whitespace with visible characters. Use :set whitespace.render all to temporarily enable visible whitespace.
+
+# Whether to render whitespace. May either be all or none, or a table with sub-keys space, nbsp, nnbsp, tab, and newline
+# default = none
+# render = "all"
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
+
+
+# Literal characters to use when rendering whitespace. Sub-keys may be any of tab, space, nbsp, nnbsp, newline or tabpad
+# default = See example below
+# characters =
+# Example
+
+# [editor.whitespace]
+# render = "all"
+# # or control each character
+# [editor.whitespace.render]
+# space = "all"
+# tab = "all"
+# nbsp = "none"
+# nnbsp = "none"
+# newline = "none"
+
+# [editor.whitespace.characters]
+# space = "·"
+# nbsp = "⍽"
+# nnbsp = "␣"
+# tab = "→"
+# newline = "⏎"
+# tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+# Literal characters to use when rendering whitespace. Sub-keys may be any of tab, space, nbsp, nnbsp, newline or tabpad
+# default = See example below
+# characters =
+# Example
+
+# [editor.whitespace]
+# render = "all"
+# # or control each character
+# [editor.whitespace.render]
+# space = "all"
+# tab = "all"
+# nbsp = "none"
+# nnbsp = "none"
+# newline = "none"
+
+# [editor.whitespace.characters]
+# space = "·"
+# nbsp = "⍽"
+# nnbsp = "␣"
+# tab = "→"
+# newline = "⏎"
+# tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+# Options for rendering vertical indent guides.
+
+# Whether to render indent guides
+# default = false
+render = false
+
+# Literal character to use for rendering the indent guide
+# default = │
+character = "│"
+
+# Number of indent levels to skip
+# default = 0
+skip-levels = 0
+
+# Example:
+
+# [editor.indent-guides]
+# render = true
+# character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+# skip-levels = 1
+
+[editor.gutters]
+
+# For simplicity, editor.gutters accepts an array of gutter types, which will use default settings for all gutter components.
+# [editor]
+# gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+# To customize the behavior of gutters, the [editor.gutters] section must be used. This section contains top level settings, as well as settings for specific gutter components as subsections.
+
+# A vector of gutters to display
+# default = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+# Example:
+
+# [editor.gutters]
+# layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.gutters.line-numbers]
+# Options for the line number gutter
+
+# The minimum number of characters to use
+# default = 3
+min-width = 3
+
+# [editor.gutters.diagnostics]
+# Currently unused
+
+# [editor.gutters.diff]
+# The diff gutter option displays colored bars indicating whether a git diff represents that a line was added, removed or changed. These colors are controlled by the theme attributes diff.plus, diff.minus and diff.delta.
+
+# Other diff providers will eventually be supported by a future plugin system.
+
+# There are currently no options for this section.
+
+# [editor.gutters.spacer]
+# Currently unused
+
+[editor.soft-wrap]
+# Options for soft wrapping lines that exceed the view width:
+
+# Whether soft wrapping is enabled.
+# default = false
+enable = true
+
+# Maximum free space left at the end of the line.
+# default = 20
+max-wrap = 20
+
+# Maximum indentation to carry over when soft wrapping a line.
+# default = 40
+max-indent-retain = 40
+
+# Text inserted before soft wrapped lines, highlighted with ui.virtual.wrap
+# default = ↪
+wrap-indicator = "↪"
+
+# Soft wrap at text-width instead of using the full viewport size.
+# default = false
+wrap-at-text-width = false
+
+# Example:
+
+# [editor.soft-wrap]
+# enable = true
+# max-wrap = 25 # increase value to reduce forced mid-word wrapping
+# max-indent-retain = 0
+# wrap-indicator = ""  # set wrap-indicator to "" to hide it
+
+[editor.smart-tab]
+# Options for navigating and editing using tab key.
+
+# If set to true, then when the cursor is in a position with non-whitespace to its left, instead of inserting a tab, it will run move_parent_node_end. If there is only whitespace to the left, then it inserts a tab as normal. With the default bindings, to explicitly insert a tab character, press Shift-tab.
+# default = true
+enable = true
+
+# Normally, when a menu is on screen, such as when auto complete is triggered, the tab key is bound to cycling through the items. This means when menus are on screen, one cannot use the tab key to trigger the smart-tab command. If this option is set to true, the smart-tab command always takes precedence, which means one cannot use the tab key to cycle through menu items. One of the other bindings must be used instead, such as arrow keys or C-n/C-p.
+# default = false
+supersede-menu = false
+
+# Due to lack of support for S-tab in some terminals, the default keybindings don't fully embrace smart-tab editing experience. If you enjoy smart-tab navigation and a terminal that supports the Enhanced Keyboard protocol, consider setting extra keybindings:
+
+# [keys.normal]
+# tab = "move_parent_node_end"
+# S-tab = "move_parent_node_start"
+
+# [keys.insert]
+# S-tab = "move_parent_node_start"
+
+# [keys.select]
+# tab = "extend_parent_node_end"
+# S-tab = "extend_parent_node_start"
+
+[editor.inline-diagnostics]
+# Options for rendering diagnostics inside the text like shown below
+# fn main() {
+#   let foo = bar;
+#             └─ no such value in this scope
+# }
+
+# The minimum severity that a diagnostic must have to be shown inline on the line that contains the primary cursor. Set to disable to not show any diagnostics inline. This option does not have any effect when in insert-mode and will only take effect 350ms after moving the cursor to a different line.
+# default = disable
+cursor-line = "warning"
+
+# The minimum severity that a diagnostic must have to be shown inline on a line that does not contain the cursor-line. Set to disable to not show any diagnostics inline.
+# default = disable
+other-lines = "error"
+
+# How many horizontal bars ─ are rendered before the diagnostic text.
+# default = 1
+prefix-len = 2
+
+# Equivalent of the editor.soft-wrap.max-wrap option for diagnostics.
+# default = 20
+max-wrap = 30
+
+# Maximum number of diagnostics to render inline for a given line
+# default = 10
+max-diagnostics = 5
+
+# The allowed values for cursor-line and other-lines are: error, warning, info, hint.
+
+# The (first) diagnostic with the highest severity that is not shown inline is rendered at the end of the line (as long as its severity is higher than the end-of-line-diagnostics config option):
+
+# fn main() {
+#   let baz = 1;
+#   let foo = bar; a local variable with a similar name exists: baz
+#             └─ no such value in this scope
+# }
+# The new diagnostic rendering is not yet enabled by default. As soon as end of line or inline diagnostics are enabled the old diagnostics rendering is automatically disabled. The recommended default setting are:
+
+# [editor]
+# end-of-line-diagnostics = "hint"
+# [editor.inline-diagnostics]
+# cursor-line = "warning" # show warnings and errors on the cursorline inline
+
+# === custom comands ===
+[keys.normal]
+A-1 = ":bp"
+A-2 = ":bn"
+A-3 = ":bc"
+A-4 = ":bco"
+A-w = ":w"
+A-W = ":w!"
+A-q = ":q"
+A-Q = ":q!"
+# moves current line down
+"A-j" = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_down",
+  "paste_after",
+]
+# moves current line up
+"A-k" = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+
+
+[keys.select]
+# moves current selection down
+"A-j" = ["delete_selection", "move_line_down", "paste_after"]
+# moves current selection up
+"A-k" = ["delete_selection", "move_line_up", "paste_before"]
+[keys.insert]
+A-w = ":w"
