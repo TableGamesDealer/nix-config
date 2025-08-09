@@ -3,7 +3,3 @@ This configuration is a fork of [dustinlyons/nixos-config](https://github.com/du
 the start of all good things is a well intention
 
 I am starting to be quite proud of this
-
-Can I now get gitui to work?
-
-please work
